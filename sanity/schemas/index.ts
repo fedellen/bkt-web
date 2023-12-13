@@ -1,4 +1,5 @@
-import { SchemaTypeDefinition } from "sanity";
-import { gallery } from "./gallery";
+import gallery from "./gallery";
+import palette from "./palette";
+import settings from "./settings";
 
-export const schemaTypes: SchemaTypeDefinition[] = [gallery];
+export default [gallery, palette, settings];

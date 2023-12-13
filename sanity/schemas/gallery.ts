@@ -1,16 +1,16 @@
-import { SchemaTypeDefinition } from "sanity";
+import { defineField, defineType } from "sanity";
 
-export const gallery: SchemaTypeDefinition = {
+export default defineType({
   name: "gallery",
   title: "Gallery",
   type: "document",
   fields: [
-    {
+    defineField({
       name: "title",
       title: "Title",
       type: "string",
-    },
-    {
+    }),
+    defineField({
       name: "images",
       title: "Images",
       type: "array",
@@ -39,6 +39,6 @@ export const gallery: SchemaTypeDefinition = {
       options: {
         layout: "grid",
       },
-    },
+    }),
   ],
-};
+});

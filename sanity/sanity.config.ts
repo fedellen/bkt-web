@@ -1,18 +1,19 @@
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { visionTool } from "@sanity/vision";
-import { schemaTypes } from "./schemas";
+import schema from "./schemas";
+import { projectId } from "./constants";
 
 export default defineConfig({
   name: "default",
-  title: "Sanity Project",
+  title: "bkt-web",
 
-  projectId: "pbcicdyt",
+  projectId,
   dataset: "production",
 
   plugins: [deskTool(), visionTool()],
 
   schema: {
-    types: schemaTypes,
+    types: schema,
   },
 });

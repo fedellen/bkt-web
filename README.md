@@ -1,5 +1,5 @@
 # BKT Web
 
-React app using Strapi CMS
+(WiP 👷) React app using Sanity.io
 
 👉 bonniekthompson.com
