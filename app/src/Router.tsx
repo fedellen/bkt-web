@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Page } from "./components/Page";
 
 const settings = {
     // TODO: more settings, get from sanity CMS
@@ -66,42 +67,57 @@ export function Router() {
                 <Route
                     path="/"
                     element={
-                        <>
-                            <h1>Home</h1>
-                            <p>Welcome to the home page</p>
-                            <section>
-                                <ul>
-                                    {settings.homeGallery.images.map((i) => (
-                                        <li key={i.src}>
-                                            <img src={i.src} alt={i.alt} />
-                                        </li>
-                                    ))}
-                                </ul>
-                            </section>
-                        </>
+                        <Page
+                            pageContent={
+                                <>
+                                    <h1>Home</h1>
+                                    <p>Welcome to the home page</p>
+                                    <section>
+                                        <ul>
+                                            {settings.homeGallery.images.map(
+                                                (i) => (
+                                                    <li key={i.src}>
+                                                        <img
+                                                            src={i.src}
+                                                            alt={i.alt}
+                                                        />
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </section>
+                                </>
+                            }
+                        />
                     }
                 />
                 <Route
                     path="/about"
                     element={
-                        <>
-                            <h1>About</h1>
-                            <p>Welcome to the about page</p>
-                        </>
+                        <Page
+                            pageContent={
+                                <>
+                                    <h1>About</h1>
+                                    <p>Welcome to the about page</p>
+                                </>
+                            }
+                        />
                     }
                 />
                 <Route
                     path="/contact"
                     element={
-                        <>
-                            <h1>Contact</h1>
-                            <p>Welcome to the contact page</p>
-                        </>
+                        <Page
+                            pageContent={
+                                <>
+                                    <h1>Contact</h1>
+                                    <p>Welcome to the contact page</p>
+                                </>
+                            }
+                        />
                     }
                 />
-                <Route path="" />
-
-                {/* generate gallery pages based on all galleries from sanity CMS not named `home` */}
+                <Route path="*" element={<Page pageContent={<p>404</p>} />} />
 
                 {galleries.map((gallery) => {
                     if (gallery.name === "home") return null;
@@ -109,12 +125,57 @@ export function Router() {
                         <Route
                             key={gallery.name}
                             path={`/${gallery.name}`}
-                            element={<body />}
+                            element={
+                                <Page
+                                    pageContent={
+                                        <>
+                                            <h1>{gallery.name}</h1>
+                                            <p>{gallery.description}</p>
+                                            <section>
+                                                <ul>
+                                                    {gallery.images.map((i) => (
+                                                        <li key={i.src}>
+                                                            <img
+                                                                src={i.src}
+                                                                alt={i.alt}
+                                                            />
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </section>
+                                        </>
+                                    }
+                                />
+                            }
                         />
                     );
                 })}
 
                 {/* generate image pages based on all images from all galleries */}
+
+                {galleries.flatMap((gallery) =>
+                    gallery.images.map((image) => (
+                        <Route
+                            key={image.src}
+                            // TODO: use a better path, this unfolds https path in completeness.
+                            //  Use a title instead or get a slug from sanity CMS
+                            path={`/${gallery.name}/${image.src}`}
+                            element={
+                                <Page
+                                    pageContent={
+                                        <>
+                                            <h1>{image.alt}</h1>
+                                            <img
+                                                src={image.src}
+                                                alt={image.alt}
+                                            />
+                                        </>
+                                    }
+                                />
+                            }
+                        />
+                    ))
+                )}
 
                 <Route path="*" element={<p>404</p>} />
             </Routes>
