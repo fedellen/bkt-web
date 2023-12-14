@@ -12,7 +12,7 @@ const settings = {
         alt: "Placeholder image 1",
       },
       {
-        src: "https://via.placeholder.com/150",
+        src: "https://via.placeholder.com/151",
         alt: "Placeholder image 2",
       },
     ],
@@ -30,7 +30,7 @@ const galleries = [
         alt: "Placeholder image 3",
       },
       {
-        src: "https://via.placeholder.com/150",
+        src: "https://via.placeholder.com/151",
         alt: "Placeholder image 4",
       },
     ],

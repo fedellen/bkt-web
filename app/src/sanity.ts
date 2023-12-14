@@ -2,9 +2,10 @@ import { createClient } from "@sanity/client";
 // import imageUrlBuilder from "@sanity/image-url";
 
 export const sanityClient = createClient({
-    projectId: "your_project_id",
-    dataset: "your_dataset",
-    useCdn: true,
+  projectId: "pbcicdyt",
+  dataset: "production",
+  useCdn: import.meta.env.PROD,
+  apiVersion: "2021-08-31",
 });
 
 // export const imageBuilder = imageUrlBuilder(sanityClient);
