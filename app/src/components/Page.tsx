@@ -1,5 +1,6 @@
 import { ErrCallback, Settings } from "../types";
 import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 interface PageProps {
   pageContent: JSX.Element;
@@ -17,10 +18,14 @@ export function Page({
     <div
       className="page"
       style={{
-        backgroundColor: `var(--bg-color)`,
-        color: `var(--text-color)`,
+        backgroundColor: `var(--bg)`,
+        color: `var(--text)`,
       }}
     >
+      <Header
+        siteTitle={settings?.title ?? "bkt"}
+        pageGallerySlugs={["illustrations", "sketches", "animations"]}
+      />
       {errorMessage ? <p>{errorMessage}</p> : null}
       {pageContent}
       <Footer settings={settings} />

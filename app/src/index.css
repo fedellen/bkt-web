@@ -1,16 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.socials svg {
-  color: var(--text-color);
-  width: 2rem;
-  height: 2rem;
-  margin: 0.5rem;
-}
-
 body {
-  background-color: var(--bg-color);
+  background-color: var(--bg);
   margin: auto;
   width: 100%;
   max-width: 60rem;
@@ -18,6 +7,23 @@ body {
 
 #root {
   margin: auto;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a {
+  color: var(--base);
+  text-decoration: none;
+  margin: 0.5rem;
+}
+
+header a:hover {
+  color: var(--text);
 }
 
 .page {
@@ -43,4 +49,15 @@ footer {
   justify-content: space-between;
   align-items: center;
   margin: 1rem;
+}
+
+.socials svg {
+  color: var(--base);
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5rem;
+}
+
+.socials svg:hover {
+  color: var(--text);
 }
