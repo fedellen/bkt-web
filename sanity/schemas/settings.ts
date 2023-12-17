@@ -47,51 +47,21 @@ export default defineType({
       title: "Home Gallery",
       type: "reference",
       to: [{ type: "gallery" }],
+      description: "The gallery to use for the home page",
     }),
     defineField({
-      name: "twitter",
-      title: "Twitter",
-      type: "string",
+      name: "pageGalleries",
+      title: "Page Galleries",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "gallery" }] }],
+      description:
+        "Each gallery set here will create a page with the same :slug as the gallery",
     }),
     defineField({
-      name: "bluesky",
-      title: "Bluesky",
-      type: "string",
-    }),
-    defineField({
-      name: "instagram",
-      title: "Instagram",
-      type: "string",
-    }),
-    defineField({
-      name: "mastodon",
-      title: "Mastodon",
-      type: "string",
-    }),
-    defineField({
-      name: "linkedin",
-      title: "LinkedIn",
-      type: "string",
-    }),
-    defineField({
-      name: "github",
-      title: "GitHub",
-      type: "string",
-    }),
-    defineField({
-      name: "youtube",
-      title: "YouTube",
-      type: "string",
-    }),
-    defineField({
-      name: "email",
-      title: "Email",
-      type: "string",
-    }),
-    defineField({
-      name: "tumblr",
-      title: "Tumblr",
-      type: "string",
+      name: "socials",
+      title: "Socials",
+      type: "reference",
+      to: [{ type: "socials" }],
     }),
   ],
 });

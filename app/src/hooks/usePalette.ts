@@ -1,19 +1,8 @@
 import { useEffect } from "react";
 import { useIsDarkMode } from "./useIsDarkMode";
-import { Settings } from "./useSettings";
-import sanityClient from "../sanity";
+import { Palette } from "../types";
 
-export interface Palette {
-  _id: string;
-  _type: "palette";
-  name: string;
-  lightest: string;
-  darkest: string;
-}
-
-export function usePalette(settings: Settings | undefined) {
-  const fetchPalette = (paletteRef: string) =>
-    sanityClient.fetch<Palette[]>(`*[_id == "${paletteRef}"]`);
+export function usePalette(palette: Palette | undefined) {
   const isDarkMode = useIsDarkMode();
 
   useEffect(() => {
@@ -22,29 +11,19 @@ export function usePalette(settings: Settings | undefined) {
 
     let backgroundColor = defaultBackgroundColor;
     let textColor = defaultTextColor;
-    if (settings && settings.palette) {
-      fetchPalette(settings.palette._ref)
-        .then((p) => {
-          const palette = p[0];
-          // console.log("palette", palette);
-          // console.log("palette.darkest", palette.darkest);
-
-          backgroundColor = isDarkMode
-            ? palette.darkest ?? defaultBackgroundColor
-            : palette.lightest ?? defaultBackgroundColor;
-          textColor = isDarkMode
-            ? palette.lightest ?? defaultTextColor
-            : palette.darkest ?? defaultTextColor;
-        })
-        .catch((e) => console.error(e))
-        .finally(() => {
-          document
-            .getElementById("root")
-            ?.style.setProperty("--bg-color", backgroundColor);
-          document
-            .getElementById("root")
-            ?.style.setProperty("--text-color", textColor);
-        });
+    if (palette) {
+      backgroundColor = isDarkMode
+        ? palette.darkest ?? defaultBackgroundColor
+        : palette.lightest ?? defaultBackgroundColor;
+      textColor = isDarkMode
+        ? palette.lightest ?? defaultTextColor
+        : palette.darkest ?? defaultTextColor;
+      document
+        .querySelector("body")
+        ?.style.setProperty("--bg-color", backgroundColor);
+      document
+        .querySelector("body")
+        ?.style.setProperty("--text-color", textColor);
     }
-  }, [settings, isDarkMode]);
+  }, [palette, isDarkMode]);
 }
