@@ -11,14 +11,14 @@ export type Settings = {
     };
   };
   faviconUrl?: string;
-  homeGallery?: Gallery;
-  pageGalleries?: Gallery[];
+  homeGallery?: GalleryI;
+  pageGalleries?: GalleryI[];
   palette?: Palette;
   socials?: Socials;
   email?: string;
 };
 
-export interface Gallery {
+export interface GalleryI {
   _id: string;
   _type: "gallery";
   title: string;

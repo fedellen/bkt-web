@@ -18,6 +18,14 @@ const fetchSettings = () =>
           alt,
           "url": asset->url,
         }
+      },
+      "pageGalleries": pageGalleries[]-> {
+        title,
+        "images": images[] {
+          caption,
+          alt,
+          "url": asset->url,
+        }
       }
     }
   `);

@@ -2,28 +2,23 @@ import { useEffect } from "react";
 import { useIsDarkMode } from "./useIsDarkMode";
 import { Palette } from "../types";
 
+const defaultLightest = "#fff";
+const defaultDarkest = "#000";
+const defaultBase = "#968282";
+
 export function usePalette(palette: Palette | undefined) {
   const isDarkMode = useIsDarkMode();
 
   useEffect(() => {
-    const defaultBackgroundColor = isDarkMode ? "#000" : "#fff";
-    const defaultTextColor = isDarkMode ? "#fff" : "#000";
+    const darkest = palette?.darkest ?? defaultDarkest;
+    const lightest = palette?.lightest ?? defaultLightest;
+    const base = palette?.base ?? defaultBase;
 
-    let backgroundColor = defaultBackgroundColor;
-    let textColor = defaultTextColor;
-    if (palette) {
-      backgroundColor = isDarkMode
-        ? palette.darkest ?? defaultBackgroundColor
-        : palette.lightest ?? defaultBackgroundColor;
-      textColor = isDarkMode
-        ? palette.lightest ?? defaultTextColor
-        : palette.darkest ?? defaultTextColor;
-      document
-        .querySelector("body")
-        ?.style.setProperty("--bg-color", backgroundColor);
-      document
-        .querySelector("body")
-        ?.style.setProperty("--text-color", textColor);
-    }
+    const backgroundColor = isDarkMode ? darkest : lightest;
+    const textColor = isDarkMode ? lightest : darkest;
+
+    document.querySelector("body")?.style.setProperty("--bg", backgroundColor);
+    document.querySelector("body")?.style.setProperty("--text", textColor);
+    document.querySelector("body")?.style.setProperty("--base", base);
   }, [palette, isDarkMode]);
 }

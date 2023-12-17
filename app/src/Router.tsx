@@ -4,6 +4,7 @@ import { useSettings } from "./hooks/useSettings";
 import { useCallback } from "react";
 import { useErrorMessage } from "./hooks/useErrorMessage";
 import { ErrCallback } from "./types";
+import { Gallery } from "./components/Gallery";
 
 export function Router() {
   const [errorMessage, setErrorMessage] = useErrorMessage();
@@ -29,20 +30,31 @@ export function Router() {
               errorMessage={errorMessage}
               settings={settings}
               pageContent={
-                <>
-                  <h1>Home</h1>
-                  <p>Welcome to the home page</p>
-                  <section className="gallery">
-                    {settings?.homeGallery?.images.map((i) => (
-                      <img key={i.url} src={i.url} alt={i.alt} />
-                    ))}
-                    <ul></ul>
-                  </section>
-                </>
+                settings?.homeGallery ? (
+                  <Gallery gallery={settings?.homeGallery} />
+                ) : (
+                  <></>
+                )
               }
             />
           }
         />
+
+        {settings?.pageGalleries?.map((g) => (
+          <Route
+            key={g.title}
+            path={`/${g.title}`}
+            element={
+              <Page
+                errorCallback={errorCallback}
+                errorMessage={errorMessage}
+                settings={settings}
+                pageContent={<Gallery gallery={g} />}
+              />
+            }
+          />
+        ))}
+
         <Route
           path="/about"
           element={
