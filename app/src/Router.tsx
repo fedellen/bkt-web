@@ -1,123 +1,90 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-const settings = {
-    // TODO: more settings, get from sanity CMS
-    homeGallery: {
-        name: "home",
-        description: "This is the first gallery",
-        images: [
-            {
-                src: "https://via.placeholder.com/150",
-                alt: "Placeholder image 1",
-            },
-            {
-                src: "https://via.placeholder.com/150",
-                alt: "Placeholder image 2",
-            },
-        ],
-    },
-};
-
-// TODO: Replace this with data from sanity CMS
-const galleries = [
-    {
-        name: "illustrations",
-        description: "This is the second gallery",
-        images: [
-            {
-                src: "https://via.placeholder.com/150",
-                alt: "Placeholder image 3",
-            },
-            {
-                src: "https://via.placeholder.com/150",
-                alt: "Placeholder image 4",
-            },
-        ],
-    },
-
-    {
-        name: "animations",
-        description: "This is the third gallery",
-        images: [
-            {
-                src: "https://via.placeholder.com/150",
-                alt: "Placeholder image 5",
-            },
-            {
-                src: "https://via.placeholder.com/150",
-                alt: "Placeholder image 6",
-            },
-        ],
-    },
-];
+import { Page } from "./components/Page";
+import { useSettings } from "./hooks/useSettings";
+import { useCallback } from "react";
+import { useErrorMessage } from "./hooks/useErrorMessage";
+import { ErrCallback } from "./types";
+import { Gallery } from "./components/Gallery";
+import { About } from "./components/About";
 
 export function Router() {
-    // change the favicon
-    const favicon = document.querySelector(
-        "link[rel~='icon']"
-    ) as HTMLLinkElement | null;
-    if (favicon) {
-        favicon.href = "https://stackoverflow.com/favicon.ico";
-    }
+  const [errorMessage, setErrorMessage] = useErrorMessage();
 
-    return (
-        <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <>
-                            <h1>Home</h1>
-                            <p>Welcome to the home page</p>
-                            <section>
-                                <ul>
-                                    {settings.homeGallery.images.map((i) => (
-                                        <li key={i.src}>
-                                            <img src={i.src} alt={i.alt} />
-                                        </li>
-                                    ))}
-                                </ul>
-                            </section>
-                        </>
-                    }
-                />
-                <Route
-                    path="/about"
-                    element={
-                        <>
-                            <h1>About</h1>
-                            <p>Welcome to the about page</p>
-                        </>
-                    }
-                />
-                <Route
-                    path="/contact"
-                    element={
-                        <>
-                            <h1>Contact</h1>
-                            <p>Welcome to the contact page</p>
-                        </>
-                    }
-                />
-                <Route path="" />
+  const errorCallback = useCallback<ErrCallback>(
+    (err) => {
+      setErrorMessage(err);
+    },
+    [setErrorMessage]
+  );
 
-                {/* generate gallery pages based on all galleries from sanity CMS not named `home` */}
+  const settings = useSettings(errorCallback);
 
-                {galleries.map((gallery) => {
-                    if (gallery.name === "home") return null;
-                    return (
-                        <Route
-                            key={gallery.name}
-                            path={`/${gallery.name}`}
-                            element={<body />}
-                        />
-                    );
-                })}
+  if (!settings) {
+    return <p>Loading...</p>;
+  }
 
-                {/* generate image pages based on all images from all galleries */}
+  return (
+    <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Page
+              errorCallback={errorCallback}
+              errorMessage={errorMessage}
+              settings={settings}
+              pageContent={
+                settings?.homeGallery ? (
+                  <Gallery gallery={settings?.homeGallery} />
+                ) : (
+                  <></>
+                )
+              }
+            />
+          }
+        />
 
-                <Route path="*" element={<p>404</p>} />
-            </Routes>
-        </BrowserRouter>
-    );
+        {settings?.pageGalleries?.map((g) => (
+          <Route
+            key={g.title}
+            path={`/${g.title}`}
+            element={
+              <Page
+                errorCallback={errorCallback}
+                errorMessage={errorMessage}
+                settings={settings}
+                pageContent={<Gallery gallery={g} />}
+              />
+            }
+          />
+        ))}
+
+        <Route
+          path="/about"
+          element={
+            <Page
+              errorCallback={errorCallback}
+              errorMessage={errorMessage}
+              settings={settings}
+              pageContent={<About aboutText={settings?.about ?? ""} />}
+            />
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+            <Page
+              errorCallback={errorCallback}
+              errorMessage={errorMessage}
+              settings={settings}
+              pageContent={<p>404</p>}
+            />
+          }
+        />
+
+        <Route path="*" element={<p>404</p>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }

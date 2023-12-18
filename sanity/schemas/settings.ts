@@ -11,6 +11,11 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "about",
+      title: "About",
+      type: "text",
+    }),
+    defineField({
       name: "description",
       title: "Site Description",
       type: "text",
@@ -47,6 +52,21 @@ export default defineType({
       title: "Home Gallery",
       type: "reference",
       to: [{ type: "gallery" }],
+      description: "The gallery to use for the home page",
+    }),
+    defineField({
+      name: "pageGalleries",
+      title: "Page Galleries",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "gallery" }] }],
+      description:
+        "Each gallery set here will create a page with the same :slug as the gallery",
+    }),
+    defineField({
+      name: "socials",
+      title: "Socials",
+      type: "reference",
+      to: [{ type: "socials" }],
     }),
   ],
 });
