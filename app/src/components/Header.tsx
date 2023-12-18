@@ -20,7 +20,6 @@ export function Header({ pageGallerySlugs, siteTitle }: HeaderProps) {
         <Link to="https://www.inprnt.com/gallery/bonniekt/">prints</Link>
         <Link to="https://ko-fi.com/abonbon/shop">wallpaper</Link>
         <Link to="/about">about</Link>
-        <Link to="/contact">contact</Link>
       </div>
     </header>
   );

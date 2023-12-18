@@ -16,6 +16,7 @@ export type Settings = {
   palette?: Palette;
   socials?: Socials;
   email?: string;
+  about?: string;
 };
 
 export interface GalleryI {

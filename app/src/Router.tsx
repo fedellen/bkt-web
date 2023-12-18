@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import { useErrorMessage } from "./hooks/useErrorMessage";
 import { ErrCallback } from "./types";
 import { Gallery } from "./components/Gallery";
+import { About } from "./components/About";
 
 export function Router() {
   const [errorMessage, setErrorMessage] = useErrorMessage();
@@ -17,7 +18,10 @@ export function Router() {
   );
 
   const settings = useSettings(errorCallback);
-  console.log("settings", settings);
+
+  if (!settings) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
@@ -62,31 +66,11 @@ export function Router() {
               errorCallback={errorCallback}
               errorMessage={errorMessage}
               settings={settings}
-              pageContent={
-                <>
-                  <h1>About</h1>
-                  <p>Welcome to the about page</p>
-                </>
-              }
+              pageContent={<About aboutText={settings?.about ?? ""} />}
             />
           }
         />
-        <Route
-          path="/contact"
-          element={
-            <Page
-              errorCallback={errorCallback}
-              errorMessage={errorMessage}
-              settings={settings}
-              pageContent={
-                <>
-                  <h1>Contact</h1>
-                  <p>Welcome to the contact page</p>
-                </>
-              }
-            />
-          }
-        />
+
         <Route
           path="*"
           element={

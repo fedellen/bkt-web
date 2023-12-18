@@ -3,6 +3,7 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedin,
+  FaMailBulk,
   FaMastodon,
   FaSquare,
   FaTumblr,
@@ -23,6 +24,10 @@ export function Footer({ settings }: FooterProps): JSX.Element {
         .map(([title, url]) => socialIcon(title, url))
     : [];
 
+  if (settings?.email) {
+    socialIcons.push(socialIcon("email", `mailto:${settings?.email}`));
+  }
+
   function socialIcon(title: string, url: string): JSX.Element {
     const iconMap: { [key: string]: JSX.Element } = {
       bluesky: (
@@ -40,6 +45,7 @@ export function Footer({ settings }: FooterProps): JSX.Element {
       youtube: <FaYoutube />,
       mastodon: <FaMastodon />,
       tumblr: <FaTumblr />,
+      email: <FaMailBulk />,
     };
 
     return (
