@@ -1,4 +1,5 @@
 import { GalleryI } from "../types";
+import "./Gallery.css";
 
 interface GalleryProps {
   gallery: GalleryI;
@@ -6,10 +7,15 @@ interface GalleryProps {
 
 export function Gallery({ gallery }: GalleryProps) {
   return (
-    <section className="gallery">
+    <ul className="gallery">
       {gallery.images.map((i) => (
-        <img key={i.url} src={i.url} alt={i.alt} />
+        <li key={i.url}>
+          <img key={i.url} src={i.url} alt={i.alt} />
+          <div className="overlay">
+            <span>{i.caption}</span>
+          </div>
+        </li>
       ))}
-    </section>
+    </ul>
   );
 }

@@ -15,13 +15,7 @@ export function Page({
   errorMessage,
 }: PageProps): JSX.Element {
   return (
-    <div
-      className="page"
-      style={{
-        backgroundColor: `var(--bg)`,
-        color: `var(--text)`,
-      }}
-    >
+    <>
       <Header
         siteTitle={settings?.title ?? "bkt"}
         pageGallerySlugs={["illustrations", "sketches", "animations"]}
@@ -29,6 +23,6 @@ export function Page({
       {errorMessage ? <p>{errorMessage}</p> : null}
       {pageContent}
       <Footer settings={settings} />
-    </div>
+    </>
   );
 }
