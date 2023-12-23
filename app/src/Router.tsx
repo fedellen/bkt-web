@@ -23,6 +23,10 @@ export function Router() {
     return <p>Loading...</p>;
   }
 
+  const imagePages = settings.pageGalleries?.map((g) =>
+    g.images.map((i) => i.url)
+  );
+
   return (
     <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
       <Routes>
@@ -83,6 +87,22 @@ export function Router() {
           }
         />
 
+        {imagePages?.map((g) =>
+          g?.map((i) => (
+            <Route
+              key={i}
+              path={i.split("/").pop()!}
+              element={
+                <Page
+                  errorCallback={errorCallback}
+                  errorMessage={errorMessage}
+                  settings={settings}
+                  pageContent={<img key={i} src={i} />}
+                />
+              }
+            />
+          ))
+        )}
         <Route path="*" element={<p>404</p>} />
       </Routes>
     </BrowserRouter>

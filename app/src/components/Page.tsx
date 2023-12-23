@@ -14,11 +14,12 @@ export function Page({
   settings,
   errorMessage,
 }: PageProps): JSX.Element {
+  const pageGallerySlugs = settings?.pageGalleries?.map((g) => g.title) ?? [];
   return (
     <>
       <Header
         siteTitle={settings?.title ?? "bkt"}
-        pageGallerySlugs={["illustrations", "sketches", "animations"]}
+        pageGallerySlugs={pageGallerySlugs}
       />
       {errorMessage ? <p>{errorMessage}</p> : null}
       {pageContent}
