@@ -10,7 +10,7 @@ export function Header({ pageGallerySlugs, siteTitle }: HeaderProps) {
       <h1>
         <Link to="/">{siteTitle}</Link>
       </h1>
-      <div className="nav">
+      <nav>
         {pageGallerySlugs.map((slug) => (
           <Link key={slug} to={`/${slug}`}>
             {slug}
@@ -20,7 +20,7 @@ export function Header({ pageGallerySlugs, siteTitle }: HeaderProps) {
         <Link to="https://www.inprnt.com/gallery/bonniekt/">prints</Link>
         <Link to="https://ko-fi.com/abonbon/shop">wallpaper</Link>
         <Link to="/about">about</Link>
-      </div>
+      </nav>
     </header>
   );
 }

@@ -28,12 +28,10 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(57, 57, 57, 0.502);
   top: 0;
   left: 0;
   transform: scale(0);
   transition: all 0.1s 0.1s ease-in-out;
-  color: var(--text);
   border-radius: 0.5rem;
   /* center overlay content */
   display: flex;
@@ -41,7 +39,20 @@
   justify-content: center;
 }
 
+div.overlay {
+  background: var(--bg);
+  opacity: 0.7;
+}
+
+span.overlay {
+  color: var(--text);
+}
+
 /* hover */
 .gallery li:hover .overlay {
+  transform: scale(1);
+}
+
+.gallery li:hover .caption {
   transform: scale(1);
 }

@@ -11,9 +11,8 @@ export function Gallery({ gallery }: GalleryProps) {
       {gallery.images.map((i) => (
         <li key={i.url}>
           <img key={i.url} src={i.url} alt={i.alt} />
-          <div className="overlay">
-            <span>{i.caption}</span>
-          </div>
+          <div className="overlay" />
+          <span className="overlay">{i.caption}</span>
         </li>
       ))}
     </ul>
