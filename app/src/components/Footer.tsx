@@ -1,15 +1,7 @@
 import { Settings } from "../types";
-import {
-  FaGithub,
-  FaInstagram,
-  FaLinkedin,
-  FaMailBulk,
-  FaMastodon,
-  FaSquare,
-  FaTumblr,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
+
+import "./Footer.css";
+import { SocialIcon } from "./SocialIcon";
 
 interface FooterProps {
   settings: Settings | undefined;
@@ -21,47 +13,23 @@ export function Footer({ settings }: FooterProps): JSX.Element {
   const socialIcons = settings?.socials
     ? Object.entries(settings.socials)
         .filter(([key]) => !key.startsWith("_")) // Exclude keys starting with '_' from sanity object
-        .map(([title, url]) => socialIcon(title, url))
+        .map(([title, url]) => <SocialIcon title={title} url={url} />)
     : [];
 
   if (settings?.email) {
-    socialIcons.push(socialIcon("email", `mailto:${settings?.email}`));
-  }
-
-  function socialIcon(title: string, url: string): JSX.Element {
-    const iconMap: { [key: string]: JSX.Element } = {
-      bluesky: (
-        <FaSquare
-          style={{
-            borderRadius: "0.25rem",
-            border: "0px",
-          }}
-        />
-      ),
-      twitter: <FaTwitter />,
-      instagram: <FaInstagram />,
-      linkedin: <FaLinkedin />,
-      github: <FaGithub />,
-      youtube: <FaYoutube />,
-      mastodon: <FaMastodon />,
-      tumblr: <FaTumblr />,
-      email: <FaMailBulk />,
-    };
-
-    return (
-      <a key={title} href={url} target="_blank" rel="noopener noreferrer">
-        {iconMap[title] ?? title}
-      </a>
+    socialIcons.push(
+      <SocialIcon title="email" url={`mailto:${settings?.email}`} />
     );
   }
 
   return (
     <footer>
       <div className="socials">{socialIcons}</div>
-      <div className="copyright">
-        <p>Copyright {new Date().getFullYear()} &copy;</p>
-        <p>{author}</p>
-      </div>
+      <ul className="copyright">
+        <li>v {import.meta.env.PACKAGE_VERSION}</li>
+        <li>copyright {new Date().getFullYear()} &copy;</li>
+        <li>{author}</li>
+      </ul>
     </footer>
   );
 }

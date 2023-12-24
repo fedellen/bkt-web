@@ -3,9 +3,11 @@ import { Page } from "./components/Page";
 import { useSettings } from "./hooks/useSettings";
 import { useCallback } from "react";
 import { useErrorMessage } from "./hooks/useErrorMessage";
-import { ErrCallback } from "./types";
+import { ErrCallback, Image } from "./types";
 import { Gallery } from "./components/Gallery";
 import { About } from "./components/About";
+import { pathFromImg } from "./utils/pathFromImg";
+import { ImagePage } from "./components/ImagePage";
 
 export function Router() {
   const [errorMessage, setErrorMessage] = useErrorMessage();
@@ -23,9 +25,17 @@ export function Router() {
     return <p>Loading...</p>;
   }
 
-  const imagePages = settings.pageGalleries?.map((g) =>
-    g.images.map((i) => i.url)
-  );
+  const imagePages: Image[] = [];
+  if (settings.homeGallery?.images) {
+    imagePages.push(...settings.homeGallery.images);
+  }
+  if (settings.pageGalleries) {
+    settings.pageGalleries.forEach((g) => {
+      if (g.images) {
+        imagePages.push(...g.images);
+      }
+    });
+  }
 
   return (
     <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
@@ -87,22 +97,20 @@ export function Router() {
           }
         />
 
-        {imagePages?.map((g) =>
-          g?.map((i) => (
-            <Route
-              key={i}
-              path={i.split("/").pop()!}
-              element={
-                <Page
-                  errorCallback={errorCallback}
-                  errorMessage={errorMessage}
-                  settings={settings}
-                  pageContent={<img key={i} src={i} />}
-                />
-              }
-            />
-          ))
-        )}
+        {imagePages.map((i) => (
+          <Route
+            key={i.url}
+            path={i.caption ?? pathFromImg(i)}
+            element={
+              <Page
+                errorCallback={errorCallback}
+                errorMessage={errorMessage}
+                settings={settings}
+                pageContent={<ImagePage image={i} />}
+              />
+            }
+          />
+        ))}
         <Route path="*" element={<p>404</p>} />
       </Routes>
     </BrowserRouter>
