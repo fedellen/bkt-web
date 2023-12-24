@@ -17,6 +17,7 @@ export type Settings = {
   socials?: Socials;
   email?: string;
   about?: string;
+  font?: string;
 };
 
 export interface GalleryI {

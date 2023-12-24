@@ -22,7 +22,7 @@ export function Router() {
   const settings = useSettings(errorCallback);
 
   if (!settings) {
-    return <p>Loading...</p>;
+    return <p>Loading settings from CMS...</p>;
   }
 
   const imagePages: Image[] = [];

@@ -68,5 +68,24 @@ export default defineType({
       type: "reference",
       to: [{ type: "socials" }],
     }),
+    defineField({
+      name: "font",
+      title: "Font",
+      type: "string",
+      options: {
+        list: [
+          { title: "Playfair Display", value: "Playfair Display" },
+          { title: "Roboto Slab", value: "Roboto Slab" },
+          { title: "Lato", value: "Lato" },
+          { title: "Montserrat", value: "Montserrat" },
+          { title: "Pacifico", value: "Pacifico" },
+          { title: "Dancing Script", value: "Dancing Script" },
+          { title: "Alegreya", value: "Alegreya" },
+          { title: "Quicksand", value: "Quicksand" },
+          { title: "Crimson Text", value: "Crimson Text" },
+          { title: "Amatic SC", value: "Amatic SC" },
+        ],
+      },
+    }),
   ],
 });
