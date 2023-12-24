@@ -1,0 +1,22 @@
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+.socials svg {
+  color: var(--base);
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5rem;
+}
+
+.socials svg:hover {
+  color: var(--text);
+}
+
+.copyright {
+  text-align: right;
+}

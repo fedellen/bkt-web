@@ -1,0 +1,9 @@
+.about {
+  margin: 10rem auto;
+  font-size: 1.6rem;
+  max-width: 50rem;
+}
+
+.about h2 {
+  margin-bottom: 2rem;
+}
