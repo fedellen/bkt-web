@@ -13,7 +13,9 @@ export function Footer({ settings }: FooterProps): JSX.Element {
   const socialIcons = settings?.socials
     ? Object.entries(settings.socials)
         .filter(([key]) => !key.startsWith("_")) // Exclude keys starting with '_' from sanity object
-        .map(([title, url]) => <SocialIcon title={title} url={url} />)
+        .map(([title, url]) => (
+          <SocialIcon key={title} title={title} url={url} />
+        ))
     : [];
 
   if (settings?.email) {
