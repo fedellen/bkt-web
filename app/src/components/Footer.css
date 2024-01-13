@@ -3,14 +3,38 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
+  /* flex-wrap: wrap; */
+
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.socials {
+  display: flex;
+  flex-direction: row;
+  margin-right: 1rem;
+  flex-wrap: wrap;
 }
 
 .socials svg {
   color: var(--base);
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   margin: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .socials svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+@media (min-width: 1024) {
+  .socials svg {
+    width: 2rem;
+    height: 2rem;
+  }
 }
 
 .socials svg:hover {
