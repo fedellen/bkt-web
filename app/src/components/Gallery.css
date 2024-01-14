@@ -18,24 +18,8 @@
 }
 
 .gallery li {
-  /* flex: 1 1 9rem; */
-  /* height: rem; */
   cursor: pointer;
   position: relative;
-}
-
-/* 
-.gallery :last-child {
-  content: "";
-  align-self: left; 
-} 
-*/
-
-.gallery li img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  vertical-align: middle;
 }
 
 .overlay {
