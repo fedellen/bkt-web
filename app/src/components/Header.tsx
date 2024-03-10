@@ -17,9 +17,15 @@ export function Header({ pageGallerySlugs, siteTitle }: HeaderProps) {
             {slug}
           </Link>
         ))}
-        <Link to="https://abonbon.bigcartel.com/">stickers</Link>
-        <Link to="https://www.inprnt.com/gallery/bonniekt/">prints</Link>
-        <Link to="https://ko-fi.com/abonbon/shop">wallpaper</Link>
+        <Link target="_blank" to="https://abonbon.bigcartel.com/">
+          stickers
+        </Link>
+        <Link target="_blank" to="https://www.inprnt.com/gallery/bonniekt/">
+          prints
+        </Link>
+        <Link target="_blank" to="https://ko-fi.com/abonbon/shop">
+          wallpaper
+        </Link>
         <Link to="/about">about</Link>
       </nav>
     </header>
