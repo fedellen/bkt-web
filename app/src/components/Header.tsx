@@ -4,8 +4,13 @@ import "./Header.css";
 interface HeaderProps {
   pageGallerySlugs: string[];
   siteTitle: string;
+  storeLinks: { link: string; headerText: string }[];
 }
-export function Header({ pageGallerySlugs, siteTitle }: HeaderProps) {
+export function Header({
+  pageGallerySlugs,
+  siteTitle,
+  storeLinks,
+}: HeaderProps) {
   return (
     <header>
       <h1>
@@ -17,15 +22,12 @@ export function Header({ pageGallerySlugs, siteTitle }: HeaderProps) {
             {slug}
           </Link>
         ))}
-        <Link target="_blank" to="https://abonbon.bigcartel.com/">
-          stickers
-        </Link>
-        <Link target="_blank" to="https://www.inprnt.com/gallery/bonniekt/">
-          prints
-        </Link>
-        <Link target="_blank" to="https://ko-fi.com/abonbon/shop">
-          wallpaper
-        </Link>
+        {storeLinks.map(({ link, headerText }) => (
+          <Link key={link} target="_blank" to={link}>
+            {headerText}
+          </Link>
+        ))}
+
         <Link to="/about">about</Link>
       </nav>
     </header>

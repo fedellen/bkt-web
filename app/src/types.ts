@@ -18,6 +18,7 @@ export type Settings = {
   email?: string;
   about?: string;
   font?: string;
+  storeLinks?: { link: string; headerText: string }[];
 };
 
 export interface GalleryI {

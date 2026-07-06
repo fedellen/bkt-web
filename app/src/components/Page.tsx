@@ -20,6 +20,7 @@ export function Page({
       <Header
         siteTitle={settings?.title ?? "bkt"}
         pageGallerySlugs={pageGallerySlugs}
+        storeLinks={settings?.storeLinks ?? []}
       />
       {errorMessage ? <p>{errorMessage}</p> : null}
       {pageContent}
