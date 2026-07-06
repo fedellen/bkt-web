@@ -5,14 +5,7 @@ import { usePalette } from "./usePalette";
 import { loadFavicon } from "../utils/loadFavicon";
 
 const fetchSettings = () =>
-  sanityClient.fetch(
-    // debug: get whole settings object
-
-    // `*[_type == "settings"] {
-    //   ...
-    // }`,
-
-    `
+  sanityClient.fetch(`
       *[_type == "settings"] {
         ...,
         "palette": palette->,
@@ -39,12 +32,10 @@ const fetchSettings = () =>
           }
         }
       }
-    `,
-  );
+    `);
 
 export function useSettings(errorCallback: ErrCallback): Settings | undefined {
   const [settings, setSettings] = useState<Settings | undefined>(undefined);
-  console.log(settings);
 
   usePalette(settings?.palette);
   loadFavicon(settings?.faviconUrl);
