@@ -87,5 +87,19 @@ export default defineType({
         ],
       },
     }),
+    defineField({
+      name: "storeLinks",
+      title: "Header Links",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "link", title: "Link", type: "url" },
+            { name: "headerText", title: "Header Text", type: "string" },
+          ],
+        },
+      ],
+    }),
   ],
 });
