@@ -56,4 +56,5 @@ export interface Socials {
   github?: string;
   youtube?: string;
   tumblr?: string;
+  email?: string;
 }
