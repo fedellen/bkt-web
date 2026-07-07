@@ -37,6 +37,13 @@ export default defineType({
       type: "image",
     }),
     defineField({
+      name: "maxLogoHeightRem",
+      title: "Max Logo Height (rem)",
+      type: "number",
+      description:
+        "The maximum height of the logo in rem units. Defaults to 20rem.",
+    }),
+    defineField({
       name: "favicon",
       title: "Favicon",
       type: "image",
