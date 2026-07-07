@@ -13,10 +13,20 @@ export type Settings = {
   palette?: Palette;
   socials?: Socials;
   email?: string;
-  about?: string;
+  aboutPage?: AboutPage;
   font?: string;
   storeLinks?: { link: string; headerText: string }[];
 };
+
+export interface AboutPage {
+  blerbOne?: string;
+  blerbTwo?: string;
+  optionalTopImageUrl?: string;
+  blerbThree?: string;
+  optionalBottomImageUrl?: string;
+  optionalMiddleImageUrl?: string;
+  optionalSecondMiddleImageUrl?: string;
+}
 
 export interface GalleryI {
   _id: string;
