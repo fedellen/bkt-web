@@ -37,8 +37,7 @@ body {
 #root {
   max-width: 65rem;
   color: var(--text);
-  /* font-family: "Playfair Display", serif; */
-  font-family: "century-gothic", sans-serif;
+  font-family: var(--font-family, "century-gothic"), sans-serif;
 
   margin: 2rem;
   width: 100%;

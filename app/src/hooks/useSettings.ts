@@ -51,6 +51,10 @@ export function useSettings(errorCallback: ErrCallback): Settings | undefined {
   usePalette(settings?.palette);
   loadFavicon(settings?.faviconUrl);
 
+  document
+    .querySelector("body")
+    ?.style.setProperty("--font-family", settings?.font ?? "century-gothic");
+
   useEffect(() => {
     fetchSettings()
       .then((settings) => {
