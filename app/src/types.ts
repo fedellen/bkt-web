@@ -5,11 +5,8 @@ export type Settings = {
   description?: string;
   author?: string;
   keywords?: string[];
-  logo?: {
-    asset: {
-      _ref: string;
-    };
-  };
+  logoUrl?: string;
+  maxLogoHeightRem?: number;
   faviconUrl?: string;
   homeGallery?: GalleryI;
   pageGalleries?: GalleryI[];

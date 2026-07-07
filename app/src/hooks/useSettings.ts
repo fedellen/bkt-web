@@ -19,6 +19,8 @@ const fetchSettings = () =>
             "url": asset->url,
           }
         },
+        "logoUrl": logo.asset->url,
+        "maxLogoHeightRem": maxLogoHeightRem,
         "storeLinks": storeLinks[] {
           link,
           headerText

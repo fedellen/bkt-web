@@ -1,20 +1,28 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { Settings } from "../types";
 
 interface HeaderProps {
-  pageGallerySlugs: string[];
-  siteTitle: string;
-  storeLinks: { link: string; headerText: string }[];
+  settings?: Settings;
 }
-export function Header({
-  pageGallerySlugs,
-  siteTitle,
-  storeLinks,
-}: HeaderProps) {
+export function Header({ settings }: HeaderProps) {
+  const pageGallerySlugs = settings?.pageGalleries?.map((g) => g.title) ?? [];
+  const logoUrl = settings?.logoUrl;
+  const siteTitle = settings?.title ?? "bkt";
   return (
     <header>
       <h1>
-        <Link to="/">{siteTitle}</Link>
+        <Link to="/">
+          {logoUrl ? (
+            <img
+              src={logoUrl}
+              alt={siteTitle}
+              style={{ maxHeight: `${settings?.maxLogoHeightRem ?? 20}rem` }}
+            />
+          ) : (
+            siteTitle
+          )}
+        </Link>
       </h1>
       <nav>
         {pageGallerySlugs.map((slug) => (
@@ -22,12 +30,11 @@ export function Header({
             {slug}
           </Link>
         ))}
-        {storeLinks.map(({ link, headerText }) => (
+        {settings?.storeLinks?.map(({ link, headerText }) => (
           <Link key={link} target="_blank" to={link}>
             {headerText}
           </Link>
         ))}
-
         <Link to="/about">about</Link>
       </nav>
     </header>
