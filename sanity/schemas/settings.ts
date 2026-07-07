@@ -92,6 +92,7 @@ export default defineType({
           { title: "Quicksand", value: "Quicksand" },
           { title: "Crimson Text", value: "Crimson Text" },
           { title: "Amatic SC", value: "Amatic SC" },
+          { title: "century-gothic", value: "century-gothic" },
         ],
       },
     }),

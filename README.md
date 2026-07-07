@@ -2,7 +2,7 @@
 
 (WiP 👷) React app using Sanity.io
 
-👉 bonniekthompson.com
+👉 bonniekthompson.com (https://polite-bienenstitch-e1d921.netlify.app/)
 
 # dev setup (macOS)
 

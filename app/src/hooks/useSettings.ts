@@ -47,9 +47,14 @@ const fetchSettings = () =>
 
 export function useSettings(errorCallback: ErrCallback): Settings | undefined {
   const [settings, setSettings] = useState<Settings | undefined>(undefined);
+  console.log("settings", settings);
 
   usePalette(settings?.palette);
   loadFavicon(settings?.faviconUrl);
+
+  document
+    .querySelector("body")
+    ?.style.setProperty("--font-family", settings?.font ?? "century-gothic");
 
   useEffect(() => {
     fetchSettings()

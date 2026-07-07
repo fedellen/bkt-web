@@ -36,7 +36,6 @@ export function Router() {
       }
     });
   }
-  console.log("settings", settings);
 
   return (
     <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
