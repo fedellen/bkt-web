@@ -10,6 +10,15 @@ const fetchSettings = () =>
         ...,
         "palette": palette->,
         "socials": socials->,
+        "aboutPage": aboutPage-> {
+          blerbOne,
+          blerbTwo,
+          blerbThree,
+          "optionalTopImageUrl": optionalTopImage.asset->url,
+          "optionalBottomImageUrl": optionalBottomImage.asset->url,
+          "optionalMiddleImageUrl": optionalMiddleImage.asset->url,
+          "optionalSecondMiddleImageUrl": optionalSecondMiddleImage.asset->url
+        },
         "faviconUrl": favicon.asset->url,
         "homeGallery": homeGallery-> {
           title,

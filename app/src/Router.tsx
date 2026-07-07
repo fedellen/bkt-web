@@ -16,7 +16,7 @@ export function Router() {
     (err) => {
       setErrorMessage(err);
     },
-    [setErrorMessage]
+    [setErrorMessage],
   );
 
   const settings = useSettings(errorCallback);
@@ -36,6 +36,7 @@ export function Router() {
       }
     });
   }
+  console.log("settings", settings);
 
   return (
     <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
@@ -80,7 +81,7 @@ export function Router() {
               errorCallback={errorCallback}
               errorMessage={errorMessage}
               settings={settings}
-              pageContent={<About aboutText={settings?.about ?? ""} />}
+              pageContent={<About aboutPage={settings?.aboutPage ?? {}} />}
             />
           }
         />

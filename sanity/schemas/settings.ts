@@ -11,11 +11,6 @@ export default defineType({
       type: "string",
     }),
     defineField({
-      name: "about",
-      title: "About",
-      type: "text",
-    }),
-    defineField({
       name: "description",
       title: "Site Description",
       type: "text",
@@ -74,6 +69,12 @@ export default defineType({
       title: "Socials",
       type: "reference",
       to: [{ type: "socials" }],
+    }),
+    defineField({
+      name: "aboutPage",
+      title: "About Page",
+      type: "reference",
+      to: [{ type: "about" }],
     }),
     defineField({
       name: "font",
