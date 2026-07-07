@@ -1,5 +1,4 @@
 import {
-  FaSquare,
   FaTwitter,
   FaInstagram,
   FaLinkedin,
@@ -9,6 +8,7 @@ import {
   FaTumblr,
   FaMailBulk,
 } from "react-icons/fa";
+import { FaBluesky } from "react-icons/fa6";
 
 interface SocialIconProps {
   title: string;
@@ -17,14 +17,7 @@ interface SocialIconProps {
 
 export function SocialIcon({ title, url }: SocialIconProps): JSX.Element {
   const iconMap: { [key: string]: JSX.Element } = {
-    bluesky: (
-      <FaSquare
-        style={{
-          borderRadius: "0.25rem",
-          border: "0px",
-        }}
-      />
-    ),
+    bluesky: <FaBluesky />,
     twitter: <FaTwitter />,
     instagram: <FaInstagram />,
     linkedin: <FaLinkedin />,
