@@ -38,7 +38,10 @@ export interface GalleryI {
 export interface Image {
   alt?: string;
   caption?: string;
+  description?: string;
+  slug?: string;
   url: string;
+  relatedImages?: Image[];
 }
 
 export interface Palette {

@@ -11,3 +11,15 @@ caption {
   font-size: 1.6rem;
   text-align: center;
 }
+
+#imagePage ul {
+  margin: 2rem 0;
+}
+
+#imagePage p {
+  margin: 2rem 0;
+}
+
+#imagePage .image-description {
+  white-space: pre-line;
+}

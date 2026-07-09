@@ -22,11 +22,7 @@ const fetchSettings = () =>
         "faviconUrl": favicon.asset->url,
         "homeGallery": homeGallery-> {
           title,
-          "images": images[] {
-            caption,
-            alt,
-            "url": asset->url,
-          }
+          ${artworkQuery}
         },
         "logoUrl": logo.asset->url,
         "maxLogoHeightRem": maxLogoHeightRem,
@@ -36,17 +32,30 @@ const fetchSettings = () =>
         },
         "pageGalleries": pageGalleries[]-> {
           title,
-          "images": images[] {
-            caption,
-            alt,
-            "url": asset->url,
-          }
+          ${artworkQuery}
         }
       }
     `);
 
+const artworkQuery = `
+      "images": artworks[]-> {
+            title,
+            "caption": image.caption,
+            "alt": image.alt,
+            "description": image.description,
+            "slug": address,
+            "url": image.asset->url,
+            "relatedImages": relatedImages[]-> {
+              title,
+              "alt": image.alt,
+              "url": image.asset->url
+            }
+          }
+    `;
+
 export function useSettings(errorCallback: ErrCallback): Settings | undefined {
   const [settings, setSettings] = useState<Settings | undefined>(undefined);
+  console.log("settings", settings);
 
   usePalette(settings?.palette);
   loadFavicon(settings?.faviconUrl);

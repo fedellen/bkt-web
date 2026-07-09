@@ -50,3 +50,20 @@ body {
 ul {
   list-style: none;
 }
+
+p {
+  margin: 3rem 0;
+  font-size: 1.2rem;
+}
+
+@media (min-width: 768px) {
+  .about p {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about p {
+    font-size: 1.7rem;
+  }
+}
