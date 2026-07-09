@@ -60,9 +60,9 @@ span.overlay {
   transform: scale(1);
 }
 
-.gallery li:hover {
+/* .gallery li:hover {
   transform: scale(1.01);
-}
+} */
 
 .gallery li:hover .caption {
   transform: scale(1);
