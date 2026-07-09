@@ -43,7 +43,7 @@ const artworkQuery = `
             "caption": image.caption,
             "alt": image.alt,
             "description": image.description,
-            "slug": address,
+            "slug": image.address,
             "url": image.asset->url,
             "relatedImages": relatedImages[]-> {
               title,
