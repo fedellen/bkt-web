@@ -6,12 +6,22 @@ interface ImagePageProps {
 }
 
 export function ImagePage({ image }: ImagePageProps) {
-  const { url, alt, caption } = image;
+  const { url, alt, caption, description, relatedImages } = image;
 
   return (
     <section id="imagePage">
-      <img alt={alt} key={url} src={url} />
-      {caption ? <caption>{caption}</caption> : <></>}
+      <img alt={alt} src={url} />
+      {caption && <p>{caption}</p>}
+      {description && <p className="image-description">{description}</p>}
+      {relatedImages && (
+        <ul className="gallery">
+          {relatedImages.map((i) => (
+            <li key={i.url}>
+              <img src={i.url} alt={i.alt} />
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

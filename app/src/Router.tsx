@@ -100,7 +100,7 @@ export function Router() {
         {imagePages.map((i) => (
           <Route
             key={i.url}
-            path={i.caption ?? pathFromImg(i)}
+            path={pathFromImg(i)}
             element={
               <Page
                 errorCallback={errorCallback}

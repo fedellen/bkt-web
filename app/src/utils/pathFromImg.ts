@@ -1,7 +1,7 @@
 import { Image } from "../types";
 
 export function pathFromImg(image: Image) {
-  return image.caption ?? pathFromImgUrl(image.url);
+  return image.slug ?? pathFromImgUrl(image.url);
 }
 
 function pathFromImgUrl(url: string) {
