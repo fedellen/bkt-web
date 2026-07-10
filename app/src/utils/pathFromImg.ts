@@ -1,7 +1,8 @@
 import { Image } from "../types";
+import { spaceToHyphen } from "./spaceToHyphen";
 
 export function pathFromImg(image: Image) {
-  return image.slug ?? pathFromImgUrl(image.url);
+  return spaceToHyphen(image.slug ?? pathFromImgUrl(image.url));
 }
 
 function pathFromImgUrl(url: string) {

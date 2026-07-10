@@ -22,13 +22,20 @@ export function Footer({ settings }: FooterProps): JSX.Element {
     : [];
 
   return (
-    <footer>
-      <div className="socials">{socialIcons}</div>
-      <ul className="copyright">
-        <li>v {import.meta.env.PACKAGE_VERSION}</li>
-        <li>copyright {new Date().getFullYear()} &copy;</li>
-        <li>{author}</li>
-      </ul>
-    </footer>
+    <>
+      <footer>
+        <div className="socials">{socialIcons}</div>
+        <ul className="copyright">
+          <li>v {import.meta.env.PACKAGE_VERSION}</li>
+          <li>copyright {new Date().getFullYear()} &copy;</li>
+          <li>{author}</li>
+        </ul>
+      </footer>
+      <span className="disclaimer">
+        All artwork © Bonnie K Thompson. No AI scrapping is allowed. To license
+        any artwork represented on this website, please contact Bonnie K
+        Thompson.
+      </span>
+    </>
   );
 }

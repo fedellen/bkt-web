@@ -6,8 +6,8 @@ import { useErrorMessage } from "./hooks/useErrorMessage";
 import { ErrCallback, Image } from "./types";
 import { Gallery } from "./components/Gallery";
 import { About } from "./components/About";
-import { pathFromImg } from "./utils/pathFromImg";
 import { ImagePage } from "./components/ImagePage";
+import { spaceToHyphen, pathFromImg } from "./utils";
 
 export function Router() {
   const [errorMessage, setErrorMessage] = useErrorMessage();
@@ -58,7 +58,7 @@ export function Router() {
         {settings?.pageGalleries?.map((g) => (
           <Route
             key={g.title}
-            path={`/${g.title}`}
+            path={`/${spaceToHyphen(g.title)}`}
             element={
               <Page
                 errorCallback={errorCallback}
@@ -97,7 +97,7 @@ export function Router() {
         {imagePages.map((i) => (
           <Route
             key={i.url}
-            path={pathFromImg(i)}
+            path={`/${pathFromImg(i)}`}
             element={
               <Page
                 errorCallback={errorCallback}
