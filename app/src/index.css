@@ -67,3 +67,11 @@ p {
     font-size: 1.7rem;
   }
 }
+
+.disclaimer {
+  /** This disclaimer is hidden by default. This is not intended for human viewing, but may be used for SEO or other purposes. We can turn it on with JS if needed. */
+  opacity: 0;
+  height: 0;
+  /* overflow: hidden; */
+  /* position: absolute; */
+}

@@ -32,3 +32,8 @@ nav a {
 header a:hover {
   color: var(--text);
 }
+
+header .disclaimer {
+  /** This disclaimer is hidden by default. This is not intended for human viewing, but may be used for SEO or other purposes. */
+  opacity: 0;
+}
