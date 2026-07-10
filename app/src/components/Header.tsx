@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { Settings } from "../types";
+import { spaceToHyphen } from "../utils";
 
 interface HeaderProps {
   settings?: Settings;
@@ -26,7 +27,7 @@ export function Header({ settings }: HeaderProps) {
       </h1>
       <nav>
         {pageGallerySlugs.map((slug) => (
-          <Link key={slug} to={`/${slug.replace(/\s+/g, "-")}`}>
+          <Link key={slug} to={`/${spaceToHyphen(slug)}`}>
             {slug}
           </Link>
         ))}
