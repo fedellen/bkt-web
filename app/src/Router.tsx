@@ -58,7 +58,7 @@ export function Router() {
         {settings?.pageGalleries?.map((g) => (
           <Route
             key={g.title}
-            path={`/${g.title}`}
+            path={`/${g.title.replace(/\s+/g, "-")}`}
             element={
               <Page
                 errorCallback={errorCallback}
@@ -97,7 +97,7 @@ export function Router() {
         {imagePages.map((i) => (
           <Route
             key={i.url}
-            path={pathFromImg(i)}
+            path={`/${pathFromImg(i)}`}
             element={
               <Page
                 errorCallback={errorCallback}

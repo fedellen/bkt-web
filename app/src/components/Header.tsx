@@ -26,7 +26,7 @@ export function Header({ settings }: HeaderProps) {
       </h1>
       <nav>
         {pageGallerySlugs.map((slug) => (
-          <Link key={slug} to={`/${slug}`}>
+          <Link key={slug} to={`/${slug.replace(/\s+/g, "-")}`}>
             {slug}
           </Link>
         ))}
