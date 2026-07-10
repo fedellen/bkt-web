@@ -22,6 +22,11 @@
   position: relative;
 }
 
+.gallery > li > .gallery-item-content {
+  display: block;
+  position: relative;
+}
+
 .gallery li {
   display: block;
   position: relative;

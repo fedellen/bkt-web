@@ -1,14 +1,15 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { GalleryI } from "../types";
+import { Image } from "../types";
 import "./Gallery.css";
 import { pathFromImg } from "../utils/pathFromImg";
 
 interface GalleryProps {
-  gallery: GalleryI;
+  images: Image[];
+  interactive?: boolean;
 }
 
-export function Gallery({ gallery }: GalleryProps) {
+export function Gallery({ images, interactive = true }: GalleryProps) {
   const galleryRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -73,17 +74,23 @@ export function Gallery({ gallery }: GalleryProps) {
         image.removeEventListener("load", onImageLoad);
       }
     };
-  }, [gallery.images]);
+  }, [images]);
 
   return (
     <ul className="gallery" ref={galleryRef}>
-      {gallery.images.map((i) => (
+      {images.map((i) => (
         <li key={i.url}>
-          <Link to={`/${pathFromImg(i)}`}>
-            <img src={i.url} alt={i.alt} />
-            <div className="overlay" />
-            <span className="overlay">{i.caption}</span>
-          </Link>
+          {interactive ? (
+            <Link to={`/${pathFromImg(i)}`}>
+              <img src={i.url} alt={i.alt} />
+              <div className="overlay" />
+              <span className="overlay">{i.caption}</span>
+            </Link>
+          ) : (
+            <div className="gallery-item-content">
+              <img src={i.url} alt={i.alt} />
+            </div>
+          )}
         </li>
       ))}
     </ul>

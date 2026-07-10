@@ -49,7 +49,7 @@ export function Router() {
               settings={settings}
               pageContent={
                 settings?.homeGallery ? (
-                  <Gallery gallery={settings?.homeGallery} />
+                  <Gallery images={settings?.homeGallery.images} />
                 ) : (
                   <></>
                 )
@@ -67,7 +67,7 @@ export function Router() {
                 errorCallback={errorCallback}
                 errorMessage={errorMessage}
                 settings={settings}
-                pageContent={<Gallery gallery={g} />}
+                pageContent={<Gallery images={g.images} />}
               />
             }
           />
