@@ -62,7 +62,6 @@ const artworkQuery = `
 
 export function useSettings(errorCallback: ErrCallback): Settings | undefined {
   const [settings, setSettings] = useState<Settings | undefined>(undefined);
-  console.log("settings", settings);
 
   usePalette(settings?.palette);
   loadFavicon(settings?.faviconUrl);
@@ -78,7 +77,6 @@ export function useSettings(errorCallback: ErrCallback): Settings | undefined {
       })
       .then(() =>
         fetchAllArtworks().then((artworks) => {
-          console.log("artworks", artworks);
           setSettings((prev) => (prev ? { ...prev, artworks } : undefined));
         }),
       )
