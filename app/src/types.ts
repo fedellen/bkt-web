@@ -16,6 +16,7 @@ export type Settings = {
   aboutPage?: AboutPage;
   font?: string;
   storeLinks?: { link: string; headerText: string }[];
+  artworks?: Image[];
 };
 
 export interface AboutPage {

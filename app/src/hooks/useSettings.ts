@@ -22,7 +22,7 @@ const fetchSettings = () =>
         "faviconUrl": favicon.asset->url,
         "homeGallery": homeGallery-> {
           title,
-          ${artworkQuery}
+          "images": artworks[]-> ${artworkQuery}
         },
         "logoUrl": logo.asset->url,
         "maxLogoHeightRem": maxLogoHeightRem,
@@ -32,14 +32,18 @@ const fetchSettings = () =>
         },
         "pageGalleries": pageGalleries[]-> {
           title,
-          ${artworkQuery}
+          "images": artworks[]-> ${artworkQuery}
         }
       }
     `);
 
+const fetchAllArtworks = () =>
+  sanityClient.fetch(`
+        *[_type == "artwork"] ${artworkQuery}
+      `);
+
 const artworkQuery = `
-      "images": artworks[]-> {
-            title,
+      {
             "caption": image.caption,
             "alt": image.alt,
             "description": image.description,
@@ -47,16 +51,17 @@ const artworkQuery = `
             "url": image.asset->url,
             "columnWeight": image.columnWeight,
             "relatedImages": relatedImages[]-> {
-              title,
               "alt": image.alt,
-              "url": image.asset->url
+              "url": image.asset->url,
+              "slug": image.address,
+              "columnWeight": image.columnWeight,
+              "caption": image.caption
             }
           }
     `;
 
 export function useSettings(errorCallback: ErrCallback): Settings | undefined {
   const [settings, setSettings] = useState<Settings | undefined>(undefined);
-  console.log("settings", settings);
 
   usePalette(settings?.palette);
   loadFavicon(settings?.faviconUrl);
@@ -70,6 +75,11 @@ export function useSettings(errorCallback: ErrCallback): Settings | undefined {
       .then((settings) => {
         setSettings(settings[0]);
       })
+      .then(() =>
+        fetchAllArtworks().then((artworks) => {
+          setSettings((prev) => (prev ? { ...prev, artworks } : undefined));
+        }),
+      )
       .catch((e) => errorCallback(e));
   }, [errorCallback]);
 
