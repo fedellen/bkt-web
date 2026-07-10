@@ -40,6 +40,7 @@ export interface Image {
   caption?: string;
   description?: string;
   slug?: string;
+  columnWeight?: number;
   url: string;
   relatedImages?: Image[];
 }

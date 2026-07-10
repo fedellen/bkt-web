@@ -12,6 +12,22 @@ interface GalleryProps {
 export function Gallery({ images, interactive = true }: GalleryProps) {
   const galleryRef = useRef<HTMLUListElement>(null);
 
+  const columnWeightFor = (columnWeight?: number): 1 | 2 | 3 => {
+    const normalized = Number.isFinite(columnWeight)
+      ? Math.trunc(columnWeight as number)
+      : 1;
+
+    if (normalized <= 1) {
+      return 1;
+    }
+
+    if (normalized >= 3) {
+      return 3;
+    }
+
+    return 2;
+  };
+
   useEffect(() => {
     const container = galleryRef.current;
 
@@ -79,7 +95,7 @@ export function Gallery({ images, interactive = true }: GalleryProps) {
   return (
     <ul className="gallery" ref={galleryRef}>
       {images.map((i) => (
-        <li key={i.url}>
+        <li key={i.url} data-column-weight={columnWeightFor(i.columnWeight)}>
           {interactive ? (
             <Link to={`/${pathFromImg(i)}`}>
               <img src={i.url} alt={i.alt} />

@@ -8,6 +8,13 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "title",
+      title: "Sanity CMS Title",
+      type: "string",
+      description:
+        "Optional title of the artwork to identify and search for it in the Sanity studio CMS UI",
+    }),
+    defineField({
       name: "image",
       type: "image",
       title: "Image",
@@ -16,13 +23,6 @@ export default defineType({
       },
       fields: [
         {
-          name: "alt",
-          type: "string",
-          title: "Alternative text",
-          description:
-            "The alternative text for the artwork image displayed on the website for screen readers. This helps visually impaired users understand the content of the image .",
-        },
-        {
           name: "caption",
           type: "string",
           title: "Caption",
@@ -30,9 +30,16 @@ export default defineType({
             "Optional caption for the artwork displayed on the website.",
         },
         {
+          name: "columnWeight",
+          type: "number",
+          title: "Gallery Column Weight",
+          description:
+            "Optional column weight for the artwork in the gallery layout. Must be a number between 1 and 3. Defaults to 1 in app.",
+        },
+        {
           name: "address",
           type: "string",
-          title: "Address",
+          title: "Address (slug)",
           description:
             "Optional address for the artwork to be displayed on the browser link. Also known as a URL slug. Example: 'bonniekthompson.com/artwork-address' where `artwork-address` is the value of this field. This defaults to the image filename when not specified.",
         },
@@ -43,14 +50,14 @@ export default defineType({
           description:
             "Optional description for the artwork displayed on the artwork page below the caption.",
         },
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          description:
+            "The alternative text for the artwork image displayed on the website for screen readers. This helps visually impaired users understand the content of the image .",
+        },
       ],
-    }),
-    defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      description:
-        "Optional title of the artwork to identify and search for it in the Sanity studio CMS UI",
     }),
     defineField({
       name: "relatedImages",
