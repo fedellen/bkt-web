@@ -26,22 +26,12 @@ export function Router() {
   }
 
   const imagePages: Image[] = [];
-  if (settings.homeGallery?.images) {
-    imagePages.push(...settings.homeGallery.images);
-  }
-  if (settings.pageGalleries) {
-    settings.pageGalleries.forEach((g) => {
-      if (g.images) {
-        imagePages.push(...g.images);
+  if (settings.artworks) {
+    settings.artworks.forEach((a) => {
+      if (a.url) {
+        imagePages.push(a);
       }
     });
-    if (settings.artworks) {
-      settings.artworks.forEach((a) => {
-        if (a.url) {
-          imagePages.push(a);
-        }
-      });
-    }
   }
 
   return (
