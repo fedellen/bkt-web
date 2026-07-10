@@ -35,6 +35,13 @@ export function Router() {
         imagePages.push(...g.images);
       }
     });
+    if (settings.artworks) {
+      settings.artworks.forEach((a) => {
+        if (a.url) {
+          imagePages.push(a);
+        }
+      });
+    }
   }
 
   return (

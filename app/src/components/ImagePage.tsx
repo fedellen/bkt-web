@@ -14,7 +14,7 @@ export function ImagePage({ image }: ImagePageProps) {
       <img alt={alt} src={url} />
       {caption && <p>{caption}</p>}
       {description && <p className="image-description">{description}</p>}
-      {relatedImages && <Gallery images={relatedImages} interactive={false} />}
+      {relatedImages && <Gallery images={relatedImages} interactive={true} />}
     </section>
   );
 }
