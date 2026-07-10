@@ -45,6 +45,7 @@ const artworkQuery = `
             "description": image.description,
             "slug": image.address,
             "url": image.asset->url,
+            "columnWeight": image.columnWeight,
             "relatedImages": relatedImages[]-> {
               title,
               "alt": image.alt,

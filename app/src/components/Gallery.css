@@ -15,6 +15,21 @@
 
 .gallery > li {
   margin: 0;
+  grid-column: span 1;
+}
+
+.gallery > li[data-column-weight="2"] {
+  grid-column: span 2;
+}
+
+.gallery > li[data-column-weight="3"] {
+  grid-column: span 2;
+}
+
+@media (min-width: 640px) {
+  .gallery > li[data-column-weight="3"] {
+    grid-column: span 3;
+  }
 }
 
 .gallery > li > a {
