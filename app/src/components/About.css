@@ -8,4 +8,6 @@
 
 .about img {
   margin: 2rem 0;
+  width: auto;
+  height: auto;
 }
