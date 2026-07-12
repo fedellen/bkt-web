@@ -10,15 +10,23 @@ export function usePalette(palette: Palette | undefined) {
   const isDarkMode = useIsDarkMode();
 
   useEffect(() => {
-    const darkest = palette?.darkest ?? defaultDarkest;
-    const lightest = palette?.lightest ?? defaultLightest;
-    const base = palette?.base ?? defaultBase;
+    const darkest = palette?.darkBg ?? palette?.lightText ?? defaultDarkest;
+    const lightest = palette?.darkText ?? palette?.lightBg ?? defaultLightest;
+    const base = palette?.darkHover ?? palette?.lightHover ?? defaultBase;
+    console.log("palette", palette);
 
-    const backgroundColor = isDarkMode ? darkest : lightest;
-    const textColor = isDarkMode ? lightest : darkest;
+    const backgroundColor = isDarkMode
+      ? (palette?.darkBg ?? darkest)
+      : (palette?.lightBg ?? lightest);
+    const textColor = isDarkMode
+      ? (palette?.darkText ?? darkest)
+      : (palette?.lightText ?? lightest);
+    const hoverColor = isDarkMode
+      ? (palette?.darkHover ?? base)
+      : (palette?.lightHover ?? base);
 
     document.querySelector("body")?.style.setProperty("--bg", backgroundColor);
+    document.querySelector("body")?.style.setProperty("--hover", hoverColor);
     document.querySelector("body")?.style.setProperty("--text", textColor);
-    document.querySelector("body")?.style.setProperty("--base", base);
   }, [palette, isDarkMode]);
 }

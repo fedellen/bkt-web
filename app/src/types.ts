@@ -50,11 +50,12 @@ export interface Palette {
   _id: string;
   _type: "palette";
   name: string;
-  lightest?: string;
-  darkest?: string;
-  dark?: string;
-  light?: string;
-  base?: string;
+  darkText?: string;
+  darkBg?: string;
+  darkHover?: string;
+  lightText?: string;
+  lightBg?: string;
+  lightHover?: string;
 }
 
 export interface Socials {
