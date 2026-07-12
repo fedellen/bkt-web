@@ -13,7 +13,7 @@ header h1 {
 }
 
 header a {
-  color: var(--base);
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -30,5 +30,5 @@ nav a {
 }
 
 header a:hover {
-  color: var(--text);
+  color: var(--hover);
 }

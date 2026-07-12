@@ -15,39 +15,64 @@ export default defineType({
       description: "Name of the palette",
     }),
     defineField({
-      name: "lightest",
-      title: "Lightest",
+      name: "darkest",
+      title: "Deprecated Darkest",
       type: "string",
-      description:
-        "Optional, must be a hex code color. This is the bg color for light mode, text color for dark mode",
+      description: "To Be removed.",
     }),
     defineField({
-      name: "darkest",
-      title: "Darkest",
+      name: "lightest",
+      title: "Deprecated Lightest",
       type: "string",
-      description:
-        "Optional, must be a hex code color. This is the bg color for dark mode, text color for light mode",
+      description: "To Be removed.",
     }),
     defineField({
       name: "base",
-      title: "Base",
+      title: "Deprecated Base",
+      type: "string",
+      description: "To Be removed.",
+    }),
+    defineField({
+      name: "darkText",
+      title: "Dark Text",
+      type: "string",
+      description:
+        "Optional, must be a hex code color. Text color for dark mode",
+    }),
+    defineField({
+      name: "darkBg",
+      title: "Dark BG",
+      type: "string",
+      description:
+        "Optional, must be a hex code color. This is the bg color for dark mode.",
+    }),
+    defineField({
+      name: "darkHover",
+      title: "Dark Hover",
       type: "string",
       description:
         "Optional, must be a hex code color. This is the primary color for the palette (if needed)",
     }),
     defineField({
-      name: "light",
-      title: "Light",
+      name: "lightText",
+      title: "Light Text",
       type: "string",
       description:
         "Optional, must be a hex code color. This is another light color for the palette (if needed)",
     }),
     defineField({
-      name: "dark",
-      title: "Dark",
+      name: "lightBg",
+      title: "Light BG",
       type: "string",
       description:
-        "Optional, must be a hex code color. This is another dark color for the palette (if needed)",
+        "Optional, must be a hex code color. This is the bg color for light mode.",
+    }),
+    defineField({
+      name: "lightHover",
+      title: "Light Hover",
+      type: "string",
+      description:
+        "Optional, must be a hex code color. This is the hover color for light mode.",
     }),
   ],
 });

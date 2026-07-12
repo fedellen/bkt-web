@@ -14,6 +14,7 @@ img {
 
 body {
   width: 100%;
+  color: var(--text);
   background-color: var(--bg);
   display: flex;
   align-items: center;
