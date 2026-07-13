@@ -42,6 +42,8 @@ export interface Image {
   description?: string;
   slug?: string;
   columnWeight?: number;
+  width?: number;
+  height?: number;
   url: string;
   relatedImages?: Image[];
 }

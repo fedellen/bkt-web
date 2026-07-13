@@ -50,12 +50,16 @@ const artworkQuery = `
             "slug": image.address,
             "url": image.asset->url,
             "columnWeight": image.columnWeight,
+            "width": image.asset->metadata.dimensions.width,
+            "height": image.asset->metadata.dimensions.height,
             "relatedImages": relatedImages[]-> {
               "alt": image.alt,
               "url": image.asset->url,
               "slug": image.address,
               "columnWeight": image.columnWeight,
-              "caption": image.caption
+              "caption": image.caption,
+              "width": image.asset->metadata.dimensions.width,
+              "height": image.asset->metadata.dimensions.height
             }
           }
     `;

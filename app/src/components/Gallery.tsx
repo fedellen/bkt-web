@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { CSSProperties, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "../types";
 import "./Gallery.css";
@@ -35,6 +35,11 @@ export function Gallery({ images, interactive = true }: GalleryProps) {
       return;
     }
 
+    container.dataset.ready = "false";
+
+    let animationFrame = 0;
+    let cancelled = false;
+
     const layout = () => {
       const styles = window.getComputedStyle(container);
       const rowHeight = Number.parseFloat(
@@ -64,47 +69,121 @@ export function Gallery({ images, interactive = true }: GalleryProps) {
       }
     };
 
-    const images = Array.from(
+    const scheduleLayout = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(layout);
+    };
+
+    const waitForImage = async (image: HTMLImageElement) => {
+      if (typeof image.decode === "function") {
+        try {
+          await image.decode();
+          return;
+        } catch {
+          return;
+        }
+      }
+
+      if (image.complete) {
+        return;
+      }
+
+      await new Promise<void>((resolve) => {
+        const resolveOnce = () => resolve();
+        image.addEventListener("load", resolveOnce, { once: true });
+        image.addEventListener("error", resolveOnce, { once: true });
+      });
+    };
+
+    const imageElements = Array.from(
       container.querySelectorAll<HTMLImageElement>("img"),
     );
-    const onImageLoad = () => layout();
+    const onImageLoad = () => scheduleLayout();
 
-    for (const image of images) {
+    for (const image of imageElements) {
       if (!image.complete) {
         image.addEventListener("load", onImageLoad);
+        image.addEventListener("error", onImageLoad);
       }
     }
 
-    const resizeObserver = new ResizeObserver(() => layout());
+    const resizeObserver = new ResizeObserver(() => scheduleLayout());
     resizeObserver.observe(container);
 
-    layout();
+    scheduleLayout();
 
-    window.addEventListener("resize", layout);
+    window.addEventListener("resize", scheduleLayout);
+
+    void Promise.allSettled(
+      imageElements.map((image) => waitForImage(image)),
+    ).then(() => {
+      if (cancelled) {
+        return;
+      }
+
+      scheduleLayout();
+      animationFrame = window.requestAnimationFrame(() => {
+        if (!cancelled) {
+          container.dataset.ready = "true";
+        }
+      });
+    });
 
     return () => {
-      window.removeEventListener("resize", layout);
+      cancelled = true;
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener("resize", scheduleLayout);
       resizeObserver.disconnect();
 
-      for (const image of images) {
+      for (const image of imageElements) {
         image.removeEventListener("load", onImageLoad);
+        image.removeEventListener("error", onImageLoad);
       }
     };
   }, [images]);
+
+  const galleryItemStyleFor = (image: Image): CSSProperties | undefined => {
+    if (!image.width || !image.height) {
+      return undefined;
+    }
+
+    return {
+      aspectRatio: `${image.width} / ${image.height}`,
+    };
+  };
 
   return (
     <ul className="gallery" ref={galleryRef}>
       {images.map((i) => (
         <li key={i.url} data-column-weight={columnWeightFor(i.columnWeight)}>
           {interactive ? (
-            <Link to={`/${pathFromImg(i)}`}>
-              <img src={i.url} alt={i.alt} />
+            <Link
+              className="gallery-item-content"
+              to={`/${pathFromImg(i)}`}
+              style={galleryItemStyleFor(i)}
+            >
+              <img
+                src={i.url}
+                alt={i.alt}
+                width={i.width}
+                height={i.height}
+                decoding="async"
+              />
               <div className="overlay" />
               <span className="overlay">{i.caption}</span>
             </Link>
           ) : (
-            <div className="gallery-item-content">
-              <img src={i.url} alt={i.alt} />
+            <div
+              className="gallery-item-content"
+              style={galleryItemStyleFor(i)}
+            >
+              <img
+                src={i.url}
+                alt={i.alt}
+                width={i.width}
+                height={i.height}
+                decoding="async"
+              />
             </div>
           )}
         </li>
