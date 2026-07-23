@@ -58,13 +58,13 @@ p {
 }
 
 @media (min-width: 768px) {
-  .about p {
+  p {
     font-size: 1.1rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .about p {
+  p {
     font-size: 1.3rem;
   }
 }
