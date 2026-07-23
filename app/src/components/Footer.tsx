@@ -26,7 +26,7 @@ export function Footer({ settings }: FooterProps): JSX.Element {
       <footer>
         <div className="socials">{socialIcons}</div>
         <ul className="copyright">
-          <li>v {import.meta.env.PACKAGE_VERSION}</li>
+          <li className="version">v {import.meta.env.PACKAGE_VERSION}</li>
           <li>copyright {new Date().getFullYear()} &copy;</li>
           <li>{author}</li>
         </ul>

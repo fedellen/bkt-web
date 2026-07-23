@@ -1,8 +1,8 @@
 # BKT Web
 
-(WiP 👷) React app using Sanity.io
+React app using Sanity.io
 
-👉 bonniekthompson.com (https://polite-bienenstitch-e1d921.netlify.app/)
+👉 bonniekthompson.com
 
 # dev setup (macOS)
 

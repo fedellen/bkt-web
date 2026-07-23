@@ -1,6 +1,6 @@
 {
   "name": "bkt-wep-app",
-  "version": "0.7.3",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

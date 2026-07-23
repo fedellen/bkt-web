@@ -8,7 +8,7 @@
 }
 
 .about img {
-  margin: 1.25rem 0;
+  margin: 1.25rem 1.25rem 3rem;
   width: auto;
   max-width: min(100%, 48rem);
   height: auto;

@@ -54,22 +54,23 @@ ul {
 
 p {
   margin: 3rem 0;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
 }
 
 @media (min-width: 768px) {
-  .about p {
-    font-size: 1.4rem;
+  p {
+    font-size: 1.1rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .about p {
-    font-size: 1.7rem;
+  p {
+    font-size: 1.3rem;
   }
 }
 
-.disclaimer {
+.disclaimer,
+.version {
   /** This disclaimer is hidden by default. This is not intended for human viewing, but may be used for SEO or other purposes. We can turn it on with JS if needed. */
   opacity: 0;
   height: 0;
