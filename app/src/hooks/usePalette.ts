@@ -26,6 +26,7 @@ export function usePalette(palette: Palette | undefined) {
       : (palette?.lightHover ?? base);
 
     document.querySelector("body")?.style.setProperty("--bg", backgroundColor);
+    document.querySelector("body")?.style.setProperty("--overlay", darkest);
     document.querySelector("body")?.style.setProperty("--hover", hoverColor);
     document.querySelector("body")?.style.setProperty("--text", textColor);
   }, [palette, isDarkMode]);
