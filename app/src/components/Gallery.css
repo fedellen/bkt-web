@@ -72,7 +72,7 @@
 }
 
 div.overlay {
-  background: var(--bg);
+  background: var(--overlay);
   opacity: 0.4;
 }
 
